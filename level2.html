@@ -2,59 +2,72 @@
 <html>
 <head>
 
-	<meta charset="UTF-8">
-	<title>Spot Score</title>
-	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="style.css">
+  <meta charset="UTF-8">
+  <title>Spot Score</title>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <script
+src="http://maps.googleapis.com/maps/api/js">
+</script>
+
+<script>
+function initialize()
+{
+  var mapProp = {
+    center: new google.maps.LatLng(58.377694,26.6551897),
+    zoom:10,
+    mapTypeId: google.maps.MapTypeId.HYBRID
+  };
+  var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+}
+google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+
 </head>
 <body>
 <div id="page">
-	<div id="header">
-		<ul class="nav nav-tabs nav-justified">
+  <div id="header">
+    <ul class="nav nav-tabs nav-justified">
   <li role="presentation"><a href="level1.html">Level1</a></li>
   <li role="presentation" class="active"><a href="level2.html">Level2</a></li>
   <li role="presentation"><a href="level3.html">Level3</a></li>
   <li role="presentation"><a href="level4.html">Level4</a></li>
 </ul>
 
-	<div id="searchbar2">
-		<input type="search" id="search" placeholder="Search keyword" >
-		<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-	</div>
-	</div>
+  <div id="searchbar2">
+  <div class="buttons">
+    <button>Nearest only</button>
+    <button>1 km radius</button>
+    <button>2 km radius</button>
+    <button>5 km radius</button>
+  </div>
+    <input type="search" id="search" placeholder="Search keyword" >
+  </div>
+  </div>
 
-	<div id="map">
+  <div id="map">
   <div class="media-middle" >
   <div class="maps">
-  	
-      <img class="media-object" id="tav" src="assets/tav.jpg">
-      <img class="media-object" id="aero" src="assets/aero.jpg">
-      <img class="media-object" id="hyb" src="assets/hyb.jpg">
-</div>
+
+  <div id="googleMap" ></div>
+  <div id="sidebar">
+  <div id="categories">
+    <input type="checkbox" name="Category 1" value="Bike"> Category 1<br>
+  <input type="checkbox" name="Category 2" value="Bike"> Category 2<br>
+  <input type="checkbox" name="Category 3" value="Bike"> Category 3<br>
+  <input type="checkbox" name="Category 4" value="Bike"> Category 4<br>
+  <input type="checkbox" name="Category 5" value="Bike"> Category 5<br>
+  <input type="checkbox" name="Category 6" value="Bike"> Category 6<br>
+  <input type="checkbox" name="Category 7" value="Bike"> Category 7<br>
+  <input type="checkbox" name="Category 8" value="Bike"> Category 8<br>
+  <input type="checkbox" name="Category 9" value="Bike"> Category 9<br>
+  <input type="checkbox" name="Category 10" value="Bike"> Category 10<br>
   </div>
-  <div class="buttons">
-  	
-  <button onclick="myFunction1()">simple</button>
-  <button onclick="myFunction2()">aero</button>
-  <button onclick="myFunction3()">hybrid</button>
-  <script>
-function myFunction1() {
-    document.getElementById("tav").style.zIndex = "2";
-    document.getElementById("aero").style.zIndex = "1";
-    document.getElementById("hyb").style.zIndex = "1";
-}
-function myFunction2() {
-    document.getElementById("tav").style.zIndex = "1";
-    document.getElementById("aero").style.zIndex = "2";
-    document.getElementById("hyb").style.zIndex = "1";
-}
-function myFunction3() {
-    document.getElementById("tav").style.zIndex = "1";
-    document.getElementById("aero").style.zIndex = "1";
-    document.getElementById("hyb").style.zIndex = "2";
-}
-</script>
+
+
+  </div>
+</div>
   </div>
 </div>
 
