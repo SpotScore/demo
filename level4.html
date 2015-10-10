@@ -24,7 +24,7 @@ src="http://maps.googleapis.com/maps/api/js">
 	  directionsDisplay = new google.maps.DirectionsRenderer();
 	  var mapOptions = {
 		zoom: 14,
-		center: haight
+		center: new google.maps.LatLng(58.3779059,26.7257545)
 	  }
 	  map = new google.maps.Map(document.getElementById("googleMap"), mapOptions);
 	  directionsDisplay.setMap(map);
@@ -50,7 +50,7 @@ src="http://maps.googleapis.com/maps/api/js">
 
 </script>
 </head>
-<body>
+<body onload="calcRoute().DRIVING">
 <div id="page">
 	<div id="header">
 		<ul class="nav nav-tabs nav-justified">
@@ -60,20 +60,26 @@ src="http://maps.googleapis.com/maps/api/js">
   <li role="presentation" class="active"><a href="level4.html">Level4</a></li>
   
 </ul>
-
-
+<div id="searchbar2">
+<div class="buttons">
+	<button>Back to the beginning</button>
+    <button>Modify the route</button>
+	</div>
+	</div>
 	</div>
 
-	<div id="searchbar">
-		<input type="search" id="search" placeholder="Search..." >
-		<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-	</div>
+	<div id="map">
+  <div class="media-middle" >
+  <div class="maps">
 	
-	 <div id="googleMap" style="width:500px;height:380px;"></div>
+	 <div id="googleMap"></div>
+	 </div>
+  </div>
+</div>
 	 <div>
 <strong>Mode of Travel: </strong>
 <select id="mode" onchange="calcRoute();">
-  <option value="DRIVING">Driving</option>
+  <option value="DRIVING" selected>Driving</option>
   <option value="WALKING">Walking</option>
   <option value="BICYCLING">Bicycling</option>
   <option value="TRANSIT">Transit</option>
@@ -81,6 +87,5 @@ src="http://maps.googleapis.com/maps/api/js">
 </div>
 	
 </div>
- 
 </body>
 </html>
