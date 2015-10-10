@@ -7,6 +7,48 @@
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="style.css">
+		<script
+src="http://maps.googleapis.com/maps/api/js">
+</script>
+<script>
+	var directionsDisplay;
+	var directionsService = new google.maps.DirectionsService();
+	var map;
+	var haight = new google.maps.LatLng(58.3824792, 26.7321326);
+	var oceanBeach = new google.maps.LatLng(58.3796341, 26.7244441);
+
+	
+	
+	
+	function initialize() {
+	  directionsDisplay = new google.maps.DirectionsRenderer();
+	  var mapOptions = {
+		zoom: 14,
+		center: haight
+	  }
+	  map = new google.maps.Map(document.getElementById("googleMap"), mapOptions);
+	  directionsDisplay.setMap(map);
+	}
+	google.maps.event.addDomListener(window, 'load', initialize);
+	
+	function calcRoute() {
+	  var selectedMode = document.getElementById("mode").value;
+	  var request = {
+		  origin: haight,
+		  destination: oceanBeach,
+		  // Note that Javascript allows us to access the constant
+		  // using square brackets and a string value as its
+		  // "property."
+		  travelMode: google.maps.TravelMode[selectedMode]
+	  };
+	  directionsService.route(request, function(response, status) {
+		if (status == google.maps.DirectionsStatus.OK) {
+		  directionsDisplay.setDirections(response);
+		}
+	  });
+	}
+
+</script>
 </head>
 <body>
 <div id="page">
@@ -16,6 +58,7 @@
   <li role="presentation"><a href="level2.html">Level2</a></li>
   <li role="presentation"><a href="level3.html">Level3</a></li>
   <li role="presentation" class="active"><a href="level4.html">Level4</a></li>
+  
 </ul>
 
 
@@ -25,8 +68,19 @@
 		<input type="search" id="search" placeholder="Search..." >
 		<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 	</div>
-
+	
+	 <div id="googleMap" style="width:500px;height:380px;"></div>
+	 <div>
+<strong>Mode of Travel: </strong>
+<select id="mode" onchange="calcRoute();">
+  <option value="DRIVING">Driving</option>
+  <option value="WALKING">Walking</option>
+  <option value="BICYCLING">Bicycling</option>
+  <option value="TRANSIT">Transit</option>
+</select>
 </div>
-
+	
+</div>
+ 
 </body>
 </html>
